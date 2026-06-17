@@ -1,0 +1,21 @@
+---
+- name: Install system dependencies
+  hosts: localhost
+  connection: local
+  gather_facts: yes
+
+  tasks:
+    # 1. Ensure ffmpeg is installed first, as requested.
+    - name: Ensure FFmpeg is installed
+      ansible.builtin.package:
+        name: ffmpeg
+        state: present
+
+    # 2. Install other required packages from the list below.
+    - name: Install remaining dependencies
+      ansible.builtin.package:
+        name:
+          - <PACKAGE_NAME_1> # Replace with your first package
+          - <PACKAGE_NAME_2> # Replace with your second package
+          # Add all other packages here, one per line or separated by commas if the module supports it.
+        state: present
